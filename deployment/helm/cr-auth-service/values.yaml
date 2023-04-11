@@ -1,0 +1,31 @@
+namespace: cr
+service:
+  name: cr-auth-service
+  port: 8080
+  image:
+    path: docker.io/bharathpantala/cr-auth-service
+    tag: latest
+
+ingress:
+  enabled: true
+  host: cr-auth.cloudrural.com
+  path: "/*"
+
+service_monitor:
+  enabled: false
+
+environments:
+  log_level: DEBUG
+
+health:
+  endpoint: /actuator/health
+  livenessProbe:
+    initialDelaySeconds: 120
+    timeoutSeconds: 15
+    periodSeconds: 30
+    failureThreshold: 3
+  readinessProbe:
+    initialDelaySeconds: 60
+    timeoutSeconds: 15
+    periodSeconds: 30
+    failureThreshold: 10
