@@ -12,7 +12,7 @@ ingress:
   path: "/*"
 
 service_monitor:
-  enabled: false
+  enabled: true
 
 environments:
   log_level: DEBUG
