@@ -11,6 +11,7 @@ metadata:
     app.kubernetes.io/instance: {{ .Values.service.name }}
     app.kubernetes.io/name: {{ .Values.service.name }}
     helm.sh/chart: {{ .Values.service.name }}-{{ .Values.service.image.tag }}
+    release: prometheus
 spec:
   selector:
     matchLabels:

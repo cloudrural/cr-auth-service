@@ -1,14 +1,14 @@
-namespace: cr
+namespace: app
 service:
   name: cr-auth-service
-  port: 8080
+  port: 10000
   image:
-    path: docker.io/bharathpantala/cr-auth-service
+    path: docker.io/bharathpantala/santhosh-app
     tag: latest
 
 ingress:
   enabled: true
-  host: cr-auth.cloudrural.com
+  host: santhoshapp.gitkloud.com
   path: "/*"
 
 service_monitor:
