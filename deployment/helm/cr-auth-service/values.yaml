@@ -8,7 +8,7 @@ service:
     tag: latest
 
 ingress:
-  enabled: true
+  enabled: false
   host: santhoshapp.gitkloud.com
   path: "/*"
 
