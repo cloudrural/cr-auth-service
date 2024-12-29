@@ -1,7 +1,9 @@
 pipeline {
     agent any
-    tool name: 'jdk17', type: 'jdk'
-    tool name: 'mvn1', type: 'maven'
+    tools {
+        jdk 'jdk17'
+        maven 'mvn1'
+    }
 
     stages {
         stage('CheckoutSCM') { 
