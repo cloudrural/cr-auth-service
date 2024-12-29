@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.cloudrural</groupId>
 	<artifactId>cr-auth-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>cr-auth-service</name>
 	<description>Cloudrural Authentiction Service</description>
 	<properties>
