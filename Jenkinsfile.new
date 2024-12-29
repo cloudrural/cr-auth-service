@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'jdk17'
+        maven 'mvn1'
+    }
+
+    stages {
+        stage('CheckoutSCM') { 
+            steps {
+                git branch: 'main', credentialsId: 'ssh-key-git', url: 'git@github.com:cloudrural/cr-auth-service.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+        stage('Unit Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                sh '''
+                    echo 'Sonar Running'
+                    echo 'Sonar Completed'
+                '''
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+        stage('Publish to S3') {
+            steps {
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-bpantala', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh 'aws s3 cp target/cr-auth-service-*.jar s3://bpantala-test-bucket/target/'
+                }
+            }
+        }
+    }
+}
