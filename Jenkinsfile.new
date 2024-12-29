@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('CheckoutSCM') { 
             steps {
-                git branch: 'main', credentialsId: 'ssh-key-git', url: 'git@github.com:cloudrural/cr-auth-service.git'
+                git branch: 'new-test', credentialsId: 'ssh-key-git', url: 'git@github.com:cloudrural/cr-auth-service.git'
             }
         }
         stage('Build') {
