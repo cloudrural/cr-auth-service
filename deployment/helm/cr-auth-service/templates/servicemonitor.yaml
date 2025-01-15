@@ -18,7 +18,7 @@ spec:
       app.kubernetes.io/instance: {{ .Values.service.name }}
       app.kubernetes.io/name: {{ .Values.service.name }}
   endpoints:
-    - interval: 15s
+    - interval: 30s
       path: /actuator/prometheus
       port: http
 
