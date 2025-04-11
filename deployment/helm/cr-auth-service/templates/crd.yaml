@@ -1,0 +1,21 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: {{ .Values.service.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  exporter:
+    endpoint: "http://adot-collector-collector.otel.svc.cluster.local:4318"
+  propagators:
+    - tracecontext
+    - baggage
+  sampler:
+    type: parentbased_traceidratio
+    argument: "1.0"
+  java:
+    image: public.ecr.aws/aws-observability/adot-autoinstrumentation-java:v2.10.0
+    env:
+      - name: OTEL_RESOURCE_ATTRIBUTES
+        value: service.name={{ .Values.service.name }},service.namespace={{ .Values.namespace }}
+      - name: OTEL_TRACES_EXPORTER
+        value: otlp

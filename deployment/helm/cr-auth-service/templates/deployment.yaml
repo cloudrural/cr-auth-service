@@ -26,6 +26,8 @@ spec:
       labels:
         app.kubernetes.io/instance: {{ .Values.service.name }}
         app.kubernetes.io/name: {{ .Values.service.name }}
+      annotations:
+        instrumentation.opentelemetry.io/inject-java: {{ .Values.service.name }}
     spec:
       containers:
         - image: {{ .Values.service.image.path }}:{{ .Values.service.image.tag }}
@@ -46,7 +48,5 @@ spec:
               memory: "500M"
               cpu: "0.5"
       dnsPolicy: ClusterFirst
-      imagePullSecrets:
-        - name: aws-registry
       serviceAccount: {{ .Values.service.name }}
       serviceAccountName: {{ .Values.service.name }}

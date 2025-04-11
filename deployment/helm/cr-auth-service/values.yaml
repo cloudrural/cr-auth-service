@@ -1,22 +1,22 @@
-namespace: app
+namespace: app-tracing
 service:
   name: cr-auth-service
   port: 10000
-  replicas: 10
+  replicas: 1
   image:
-    path: 975049893517.dkr.ecr.us-east-1.amazonaws.com/dev/cr-auth-service
-    tag: "1.0.0"
+    path: docker.io/bharathpantala/santhosh-app
+    tag: "latest"
 
 ingress:
   enabled: true
   host: devapps.gitkloud.com
-  path: "/cr"
+  path: "/"
 
 service_monitor:
   enabled: true
 
 environments:
-  log_level: DEBUG
+  log_level: INFO
 
 health:
   endpoint: /actuator/health
