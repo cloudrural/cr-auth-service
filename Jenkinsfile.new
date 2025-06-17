@@ -32,6 +32,7 @@ pipeline {
         stage('Package') {
             steps {
                 sh 'mvn package'
+                sh 'cp -vrf target/cr-auth-service-*.jar target/cr-auth-service-${VERSION}.jar'
                 stash includes: 'target/', name: 'artifacts'
             }
         }
@@ -39,7 +40,7 @@ pipeline {
             steps {
                 unstash 'artifacts'
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-bpantala', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    sh 'aws s3 cp target/cr-auth-service-*.jar s3://jay-artifacts-bpantala/target/'
+                    sh 'aws s3 cp target/cr-auth-service-${VERSION}.jar s3://jay-artifacts-bpantala/target/'
                 }
             }
         }
