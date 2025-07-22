@@ -1,8 +1,8 @@
   apiVersion: opentelemetry.io/v1alpha1
   kind: Instrumentation
   metadata:
-    name: {{ .Values.service.name }}
-    namespace: {{ .Values.namespace }}
+    name: "{{ .Values.service.name }}"
+    namespace: "{{ .Values.namespace }}"
   spec:
     exporter:
       endpoint: http://adot-collector-collector.otel.svc.cluster.local:4318
