@@ -1,4 +1,4 @@
-namespace: app-tracing
+namespace: demo
 service:
   name: cr-auth-service
   port: 10000
@@ -8,8 +8,8 @@ service:
     tag: "latest"
 
 ingress:
-  enabled: true
-  host: devapps.gitkloud.com
+  enabled: false
+  host: demo.example.com
   path: "/"
 
 service_monitor:
