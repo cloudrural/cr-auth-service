@@ -20,4 +20,3 @@
         value: "otlp"
       - name: OTEL_RESOURCE_ATTRIBUTES
         value: "service.name=sampleservice,service.namespace=demo"
-
