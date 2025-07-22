@@ -1,22 +1,22 @@
-  apiVersion: opentelemetry.io/v1alpha1
-  kind: Instrumentation
-  metadata:
-    name: sampleservice
-    namespace: demo
-  spec:
-    exporter:
-      endpoint: http://adot-collector-collector.otel.svc.cluster.local:4318
-    propagators:
-      - tracecontext
-      - baggage
-    sampler:
-      type: parentbased_traceidratio
-      argument: '1.0'
-    java:
-      env:
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
-        value: "http://adot-collector-collector.otel.svc.cluster.local:4318"
-      - name: OTEL_TRACES_EXPORTER
-        value: "otlp"
-      - name: OTEL_RESOURCE_ATTRIBUTES
-        value: "service.name=sampleservice,service.namespace=demo"
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: sampleservice
+  namespace: demo
+spec:
+  exporter:
+    endpoint: http://adot-collector-collector.otel.svc.cluster.local:4318
+  propagators:
+    - tracecontext
+    - baggage
+  sampler:
+    type: parentbased_traceidratio
+    argument: '1.0'
+  java:
+    env:
+    - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      value: "http://adot-collector-collector.otel.svc.cluster.local:4318"
+    - name: OTEL_TRACES_EXPORTER
+      value: "otlp"
+    - name: OTEL_RESOURCE_ATTRIBUTES
+      value: "service.name=sampleservice,service.namespace=demo"
