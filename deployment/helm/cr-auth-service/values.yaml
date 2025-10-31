@@ -1,4 +1,4 @@
-namespace: app-tracing
+namespace: app
 service:
   name: cr-auth-service
   port: 10000
