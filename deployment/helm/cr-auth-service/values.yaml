@@ -2,7 +2,7 @@ namespace: app
 service:
   name: cr-auth-service
   port: 10000
-  replicas: 1
+  replicas: 4
   image:
     path: docker.io/bharathpantala/santhosh-app
     tag: "latest"
